@@ -60,7 +60,7 @@ export const report = async (filter) => {
 
 const { days, hours } = millisecondsToDaysAndHours(averageMilliseconds);
  return {
-  'Tasks completedhghghghghg':averageTime.length,
+  'Tasks completed':averageTime.length,
   'Average Time':`Average Time: ${days} day(s) and ${hours} hour(s)`
  }
 }
