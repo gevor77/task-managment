@@ -12,9 +12,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/report', async (req, res) => {
-  console.log(req.body);
-  
+router.get('/report', async (req, res) => {  
   try {
     const { completed, startDate, endDate, assignedMember } = req.query;
 

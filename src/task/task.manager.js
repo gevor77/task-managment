@@ -30,7 +30,7 @@ export const createTask = async (taskData) => {
 };
 
 export const getAllTasks = async (filter) => {
-  const query = await getTasksByFilter(filter);  
+  const query = await getTasksByFilter(filter);
   return Task.find(query);
 };
 
@@ -65,11 +65,19 @@ const { days, hours } = millisecondsToDaysAndHours(averageMilliseconds);
  }
 }
 
-export const getTasksByFilter = async ({ completed, assignedMember }) => {
+export const getTasksByFilter = async ({ completed, startDate, endDate, assignedMember }) => {
   const query = {};
   
   if (completed) {
     query.completed = completed;
+  }
+  if (startDate && endDate) { 
+    query.startDate = { $gte: new Date(startDate) };
+    query.endDate = { $lte: new Date(endDate) };
+  } else if (startDate) {
+    query.startDate = { $gte: new Date(startDate) };
+  } else if (endDate) {
+    query.endDate = { $lte: new Date(endDate) };
   }
 
   if (assignedMember) {
